@@ -55,6 +55,11 @@
               >
             </el-input-group>
           </div>
+          <div class="div-button-2">
+            <el-button class="button-2" @click="TEXT-PUT"  circle>
+              <el-icon><UserFilled /></el-icon>
+            </el-button>
+          </div>
         </el-menu>
       </el-header>
       <el-container>
@@ -105,7 +110,7 @@
             </el-col>
           </el-row>
         </el-aside>
-        <el-main>Main</el-main>
+        <el-main>Main-Page</el-main>
       </el-container>
     </el-container>
   </div>
@@ -118,6 +123,7 @@ import {
   Menu as IconMenu,
   Location,
   Setting,
+  UserFilled
 } from "@element-plus/icons-vue";
 
 export default {
@@ -133,6 +139,7 @@ export default {
     IconMenu,
     Location,
     Setting,
+    UserFilled
   },
   directives: {
     focus: {
@@ -142,9 +149,7 @@ export default {
       },
     },
   },
-  setup() {
-    
-  },
+  setup() {},
 };
 </script>
 
