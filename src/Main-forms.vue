@@ -20,7 +20,7 @@
           active-text-color="#ffd04b"
           @select="handleSelect"
         >
-          <el-menu-item index="1">Processing Center</el-menu-item>
+          <el-menu-item index="1">Home Page</el-menu-item>
           <el-sub-menu index="2">
             <template #title>Workspace</template>
             <el-menu-item index="2-1">item one</el-menu-item>
@@ -33,8 +33,30 @@
               <el-menu-item index="2-4-3">item three</el-menu-item>
             </el-sub-menu>
           </el-sub-menu>
-          <el-menu-item index="3" disabled>Info</el-menu-item>
+          <el-menu-item index="3">Info</el-menu-item>
           <el-menu-item index="4">Orders</el-menu-item>
+          <div class="div-button-1">
+            <el-button class="button-1" @click="show = !show" circle>
+              <el-icon><Search /></el-icon>
+            </el-button>
+            <!-- <el-input-group> -->
+              <transition name="fade">
+                <el-input
+                  v-model="input"
+                  v-if="show"
+                  type="text"
+                  class="input-find"
+                  placeholder="Please input"
+                  v-focus
+                />
+              </transition>
+              <button
+                v-if="show"
+                class="button-2"
+                @click="enter-click"
+              ></button>
+            <!-- </el-input-group> -->
+          </div>
         </el-menu>
       </el-header>
       <el-container>
@@ -45,7 +67,30 @@
   </div>
 </template>
 
+<script>
+import { Search } from "@element-plus/icons-vue";
 
+export default {
+  data() {
+    return {
+      show: false,
+      input: "",
+    };
+  },
+  components: {
+    Search,
+  },
+  directives: {
+    focus: {
+      // 当绑定元素插入时触发
+      inserted(el) {
+        el.focus();
+      },
+    },
+  },
+  setup() {},
+};
+</script>
 
 <style lang="less" scoped>
 @import url("./Main-forms.less");
