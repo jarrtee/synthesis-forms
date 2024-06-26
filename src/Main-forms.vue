@@ -1,29 +1,21 @@
-<!-- <template>
-  <div id="main">
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
-  </div>
-</template> -->
 <template>
   <div id="main">
     <el-container>
       <el-header>
         <el-menu
-          :default-active="1"
+          :default-active="activeIndex"
           class="el-menu-demo"
           mode="horizontal"
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
           @select="handleSelect"
+          :ellipsis="false"
         >
-          <el-menu-item index="1">Home Page</el-menu-item>
-          <el-sub-menu index="2">
-            <template #title>Workspace</template>
-            <el-menu-item index="2-1">item one</el-menu-item>
+          <el-menu-item index="1" style="left: 65%">Home Page</el-menu-item>
+          <!-- <el-sub-menu index="2" style="right:65%">
+            <template  #title >Workspace</template>
+            <el-menu-item index="2-1" >item one</el-menu-item>
             <el-menu-item index="2-2">item two</el-menu-item>
             <el-menu-item index="2-3">item three</el-menu-item>
             <el-sub-menu index="2-4">
@@ -32,9 +24,10 @@
               <el-menu-item index="2-4-2">item two</el-menu-item>
               <el-menu-item index="2-4-3">item three</el-menu-item>
             </el-sub-menu>
-          </el-sub-menu>
-          <el-menu-item index="3">Info</el-menu-item>
-          <el-menu-item index="4">Orders</el-menu-item>
+          </el-sub-menu> -->
+          <el-menu-item index="3" style="left: 65%">Info</el-menu-item>
+          <el-menu-item index="4" style="left: 65%">Orders</el-menu-item>
+          <el-menu-item index="5" style="left: 65%">Orders1</el-menu-item>
           <div class="div-button-1">
             <el-button class="button-1" @click="show = !show" circle>
               <el-icon><Search /></el-icon>
@@ -55,8 +48,13 @@
               >
             </el-input-group>
           </div>
+          <div class="div-button-3">
+            <el-button class="button-4" @click="menuchoose" circle>
+              <el-icon><icon-menu /></el-icon>
+            </el-button>
+          </div>
           <div class="div-button-2">
-            <el-button class="button-2" @click="TEXT-PUT"  circle>
+            <el-button class="button-3" @click="TEXTPUT" circle> 
               <el-icon><UserFilled /></el-icon>
             </el-button>
           </div>
@@ -110,7 +108,14 @@
             </el-col>
           </el-row>
         </el-aside>
-        <el-main>Main-Page</el-main>
+        <el-main
+          :default-active="activeIndex"
+          mode="horizontal"
+          @select="handleSelect"
+        >
+          <div v-if="activeIndex === '1'">内容1</div>
+          <div v-else-if="activeIndex === '3'">内容2</div>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -123,9 +128,12 @@ import {
   Menu as IconMenu,
   Location,
   Setting,
-  UserFilled
+  UserFilled,
 } from "@element-plus/icons-vue";
+import { ref } from "vue";
+// import HomePage from "./components/HomePage.vue";
 
+const activeIndex = ref("1");
 export default {
   data() {
     return {
@@ -139,7 +147,8 @@ export default {
     IconMenu,
     Location,
     Setting,
-    UserFilled
+    UserFilled,
+    // HomePage,
   },
   directives: {
     focus: {
@@ -149,7 +158,14 @@ export default {
       },
     },
   },
-  setup() {},
+  setup() {
+    function handleSelect(index) {
+      activeIndex.value = index;
+    }
+    return {
+      handleSelect,
+    };
+  },
 };
 </script>
 
