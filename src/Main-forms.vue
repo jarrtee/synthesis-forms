@@ -6,16 +6,16 @@
           :default-active="activeIndex"
           class="el-menu-demo"
           mode="horizontal"
-          background-color="#545c64"
-          text-color="#fff"
-          active-text-color="#ffd04b"
+          background-color="transparent"
+          text-color="#333"
+          active-text-color="#333"
           @select="handleSelect"
           :ellipsis="false"
         >
-          <el-menu-item index="1" style="left: 65%">Home Page</el-menu-item>
-          <!-- <el-sub-menu index="2" style="right:65%">
-            <template  #title >Workspace</template>
-            <el-menu-item index="2-1" >item one</el-menu-item>
+          <el-menu-item index="1" class="menu-item-1">Home Page</el-menu-item>
+          <el-sub-menu index="2" class="menu-item-2">
+            <template #title>Workspace</template>
+            <el-menu-item index="2-1">item one</el-menu-item>
             <el-menu-item index="2-2">item two</el-menu-item>
             <el-menu-item index="2-3">item three</el-menu-item>
             <el-sub-menu index="2-4">
@@ -24,10 +24,10 @@
               <el-menu-item index="2-4-2">item two</el-menu-item>
               <el-menu-item index="2-4-3">item three</el-menu-item>
             </el-sub-menu>
-          </el-sub-menu> -->
-          <el-menu-item index="3" style="left: 65%">Info</el-menu-item>
-          <el-menu-item index="4" style="left: 65%">Orders</el-menu-item>
-          <el-menu-item index="5" style="left: 65%">Orders1</el-menu-item>
+          </el-sub-menu>
+          <el-menu-item index="3" class="menu-item-3">Info</el-menu-item>
+          <el-menu-item index="4" class="menu-item-4">Orders</el-menu-item>
+          <el-menu-item index="5" class="menu-item-5">Orders1</el-menu-item>
           <div class="div-button-1">
             <el-button class="button-1" @click="show = !show" circle>
               <el-icon><Search /></el-icon>
@@ -43,9 +43,11 @@
                   v-focus
                 />
               </transition>
-              <el-button v-if="show" class="button-2" @click="enterclick"
-                >Search</el-button
-              >
+              <transition name="fade">
+                <el-button v-if="show" class="button-2" @click="enterclick"
+                  >Search</el-button
+                >
+              </transition>
             </el-input-group>
           </div>
           <div class="div-button-3">
@@ -54,9 +56,26 @@
             </el-button>
           </div>
           <div class="div-button-2">
-            <el-button class="button-3" @click="TEXTPUT" circle> 
+            <el-button class="button-3" @click="TEXTPUT" circle>
               <el-icon><UserFilled /></el-icon>
             </el-button>
+          </div>
+          <div class="div-button-4">
+            <el-button class="button-5"> </el-button>
+          </div>
+          <div class="div-button-5">
+            <!-- <span @click.stop="toggleDark()" style="font-size: xx-small;color: purple;">切换主题</span> -->
+            <el-switch
+              v-model = 'isDarkTheme'
+              :active-action-icon="View"
+              :inactive-action-icon="Hide"
+              size="middle"
+              @change="toggleDark()" 
+              style="--el-switch-on-color: gray"
+            />
+            <el-icon>
+            <Sunny/><Moon/>
+            </el-icon>
           </div>
         </el-menu>
       </el-header>
@@ -66,7 +85,7 @@
             <el-col :span="25">
               <el-menu
                 active-text-color="burlywood"
-                background-color="aliceblue"
+                background-color="transparent"
                 class="el-menu-vertical-demo"
                 default-active="2"
                 text-color="mediumaquamarine"
@@ -129,11 +148,18 @@ import {
   Location,
   Setting,
   UserFilled,
+
 } from "@element-plus/icons-vue";
 import { ref } from "vue";
 // import HomePage from "./components/HomePage.vue";
+import { useDark, useToggle } from '@vueuse/core'
+
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
+const isDarkTheme = ref("true")
 
 const activeIndex = ref("1");
+
 export default {
   data() {
     return {
@@ -148,6 +174,7 @@ export default {
     Location,
     Setting,
     UserFilled,
+
     // HomePage,
   },
   directives: {
@@ -162,8 +189,11 @@ export default {
     function handleSelect(index) {
       activeIndex.value = index;
     }
+
     return {
       handleSelect,
+      toggleDark,
+      isDarkTheme
     };
   },
 };

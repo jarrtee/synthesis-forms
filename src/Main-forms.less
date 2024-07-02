@@ -19,7 +19,7 @@
   }
   
   .el-aside {
-    background-color:aliceblue;
+    background-color:transparent;
     color: aliceblue;
     text-align: center;
     line-height: 870px;
@@ -52,21 +52,43 @@
   }
 
   .el-menu-demo{
-    right: 20px;
-    width: 102.2%;
+    position: absolute;
+    right: 0px;
+    width: 100%;
     display: flex;
-    background-color:lightblue;
+    background-color:transparent;
     // justify-content:left
   }
-  // .div-menu-1{
-  //   left: 0px;
-  // }
+  .menu-item-1{
+    position: absolute;
+    right: 700px;
+  }
+
+  .menu-item-2{
+    position: absolute;
+    right: 566px;
+  }
+
+  .menu-item-3{
+    position: absolute;
+    right: 502px;
+  }
+
+  .menu-item-4{
+    position: absolute;
+    right: 419px;
+  }
+
+  .menu-item-5{
+    position: absolute;
+    right: 328px;
+  }
+  
 
   .div-button-1{
+    position: absolute;
     width: 100%;
-    text-align: left;
-    align-items: center;
-    
+    right: 600px;
   }
   .fade-enter-active, .fade-leave-active {
     transition: opacity 0.5s ease;
@@ -75,19 +97,23 @@
     opacity: 0;
   }
   .input-find{
+    position: absolute;
     height: 32px;
-    width: 18%;
-    right: -10px;
+    width: 12%;
+    right: 680px;
+    top: 13px;
     color: #333;
   }
   .button-2{
+    position: absolute;
     height: 32px;
     // width: 45px;
-    padding-right: 8px;
-    right: -20px;
+    padding: 8px;
+    right: 619px;
+    top: 13px;
   }
   .row-menu{
-    background-color: aliceblue;
+    background-color: transparent;
     left: 38%;
     width: 100px;
     color:mediumaquamarine
@@ -96,10 +122,12 @@
   .el-menu-vertical-demo{
     right: 40px;
     width: 130px;
+    background-color: transparent;
   }
   .div-button-2{
+    position: absolute;
     width: 180px;
-    text-align: left;
+    right: 0px;
   }
   .button-3{
     background-color: transparent;
@@ -107,8 +135,8 @@
     font-size: 25px;
   } 
   .button-4{
-    background-color: lightblue;
-    border-color: lightblue;
+    background-color: transparent;
+    border-color: transparent;
     font-size: 30px;
     color:moccasin;
     border: 0;
@@ -118,7 +146,7 @@
   } 
    //按钮选中后的背景色
   .button-4:hover {
-    background-color: lightblue; /* 更改为你想要的颜色 */
+    background-color: transparent; /* 更改为你想要的颜色 */
     transform: scale(1.6); /* 图标放大动画 */
   }
   //图标选中后的背景色
@@ -126,7 +154,38 @@
     color:beige;
   }
   .div-button-3{
+    position: absolute;
     width: 260px;
-    text-align: left;
+    right: 100px;
+  }
+  .homepage-button{
+    // padding: 30px;
+    left: 0px;
+    align-items: right;
   }
 
+  .div-button-4{
+    position: absolute;
+    left: 200px;
+  }
+
+  .button-5{
+    width: 100px;
+    height: 58.5px;
+    background-image: url('./assets/logo.png');
+    background-size: cover; /* 背景图片自适应按钮大小 */
+    background-position: center; /* 背景图片居中 */
+    border: none;
+    background-color: transparent;
+  }
+
+  //按钮选中后的背景色
+  .button-5:hover {
+    background-color: transparent; /* 更改为你想要的颜色 */
+  }
+
+  .div-button-5{
+    position: absolute;
+    right: 130px;
+  }
+  
