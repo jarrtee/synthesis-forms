@@ -6,13 +6,19 @@
           :default-active="activeIndex"
           class="el-menu-demo"
           mode="horizontal"
-          background-color="transparent"
-          text-color="#333"
-          active-text-color="#333"
           @select="handleSelect"
           :ellipsis="false"
-        >
-          <el-menu-item index="1" class="menu-item-1">首页</el-menu-item>
+          ><!-- background-color="transparent"
+                text-color="#333"
+                active-text-color="#333"
+                :ellipsis="false" -->
+          <el-sub-menu index="6" class="menu-item-6">
+            <template #title>quilaty</template>
+            <el-menu-item index="6-1">item one</el-menu-item>
+            <el-menu-item index="6-2">item two</el-menu-item>
+            <el-menu-item index="6-3">item three</el-menu-item>
+          </el-sub-menu>
+          <el-menu-item index="1" class="menu-item-1">API</el-menu-item>
           <el-sub-menu index="2" class="menu-item-2">
             <template #title>Workspace</template>
             <el-menu-item index="2-1">item one</el-menu-item>
@@ -60,11 +66,20 @@
               <el-icon><UserFilled /></el-icon>
             </el-button>
           </div>
+          <div class="div-button-6">
+            <el-button class="button-6" @click="TEXTPUT" circle>
+              <el-icon><Bicycle /></el-icon>
+            </el-button>
+          </div>
+          <div class="div-button-7">
+            <el-button class="button-7" @click="TEXTPUT" circle>
+              <el-icon><Setting /></el-icon>
+            </el-button>
+          </div>
           <div class="div-button-4">
             <el-button class="button-5"> </el-button>
           </div>
           <div class="div-button-5">
-            <!-- <span @click.stop="toggleDark()" style="font-size: xx-small;color: purple;">切换主题</span> -->
             <el-switch
               v-model="isDarkTheme"
               size="middle"
@@ -82,45 +97,51 @@
         </el-menu>
       </el-header>
       <el-container>
-      <el-aside width="130px" >
-        <el-row class="row-menu">
-          <el-col :span="12">
-            <el-menu
-              default-active="2"
-              class="el-menu-vertical-demo"
-              @open="handleOpen"
-              @close="handleClose"
-            >
-              <el-sub-menu index="1">
-                <template #title>
-                  <el-icon><location /></el-icon>
-                  <span>Navigator One</span>
-                </template>
-                <el-menu-item-group title="Group One">
-                  <el-menu-item index="1-1" style="justify-content: center;">item one</el-menu-item>
-                  <el-menu-item index="1-2" style="justify-content: center;">item two</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="Group Two">
-                  <el-menu-item index="1-3" style="justify-content: center;">item three</el-menu-item>
-                </el-menu-item-group>
-              </el-sub-menu>
-              <el-menu-item index="2">
-                <el-icon><icon-menu /></el-icon>
-                <span>Navigator Two</span>
-              </el-menu-item>
-              <el-menu-item index="3">
-                <el-icon><document /></el-icon>
-                <span>Navigator Three</span>
-              </el-menu-item>
-              <el-menu-item index="4">
-                <el-icon><setting /></el-icon>
-                <span>Navigator Four</span>
-              </el-menu-item>
-            </el-menu>
-          </el-col>
-        </el-row>
-      </el-aside>
-      <el-main> </el-main>
+        <el-aside width="130px">
+          <el-row class="row-menu">
+            <el-col :span="12">
+              <el-menu
+                default-active="2"
+                class="el-menu-vertical-demo"
+                @open="handleOpen"
+                @close="handleClose"
+              >
+                <el-sub-menu index="1">
+                  <template #title>
+                    <el-icon><location /></el-icon>
+                    <span>Navigator One</span>
+                  </template>
+                  <el-menu-item-group title="Group One">
+                    <el-menu-item index="1-1" style="justify-content: center"
+                      >item one</el-menu-item
+                    >
+                    <el-menu-item index="1-2" style="justify-content: center"
+                      >item two</el-menu-item
+                    >
+                  </el-menu-item-group>
+                  <el-menu-item-group title="Group Two">
+                    <el-menu-item index="1-3" style="justify-content: center"
+                      >item three</el-menu-item
+                    >
+                  </el-menu-item-group>
+                </el-sub-menu>
+                <el-menu-item index="2">
+                  <el-icon><icon-menu /></el-icon>
+                  <span>Navigator Two</span>
+                </el-menu-item>
+                <el-menu-item index="3">
+                  <el-icon><document /></el-icon>
+                  <span>Navigator Three</span>
+                </el-menu-item>
+                <el-menu-item index="4">
+                  <el-icon><setting /></el-icon>
+                  <span>Navigator Four</span>
+                </el-menu-item>
+              </el-menu>
+            </el-col>
+          </el-row>
+        </el-aside>
+        <el-main> </el-main>
       </el-container>
     </el-container>
   </div>
@@ -136,6 +157,8 @@ import {
   UserFilled,
   Sunny,
   Moon,
+  Bicycle,
+  Setting,
 } from "@element-plus/icons-vue";
 import { ref } from "vue";
 // import HomePage from "./components/HomePage.vue";
@@ -163,6 +186,8 @@ export default {
     UserFilled,
     Sunny,
     Moon,
+    Bicycle,
+    Setting
 
     // HomePage,
   },
