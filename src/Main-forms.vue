@@ -13,14 +13,14 @@
                 active-text-color="#333"
                 :ellipsis="false" -->
           <el-sub-menu index="6" class="menu-item-6">
-            <template #title>quilaty</template>
+            <template #title>栏目一</template>
             <el-menu-item index="6-1">item one</el-menu-item>
             <el-menu-item index="6-2">item two</el-menu-item>
             <el-menu-item index="6-3">item three</el-menu-item>
           </el-sub-menu>
           <el-menu-item index="1" class="menu-item-1">API</el-menu-item>
           <el-sub-menu index="2" class="menu-item-2">
-            <template #title>Workspace</template>
+            <template #title>栏目二</template>
             <el-menu-item index="2-1">item one</el-menu-item>
             <el-menu-item index="2-2">item two</el-menu-item>
             <el-menu-item index="2-3">item three</el-menu-item>
@@ -31,9 +31,9 @@
               <el-menu-item index="2-4-3">item three</el-menu-item>
             </el-sub-menu>
           </el-sub-menu>
-          <el-menu-item index="3" class="menu-item-3">Info</el-menu-item>
-          <el-menu-item index="4" class="menu-item-4">Orders</el-menu-item>
-          <el-menu-item index="5" class="menu-item-5">Orders1</el-menu-item>
+          <el-menu-item index="3" class="menu-item-3">栏目三</el-menu-item>
+          <el-menu-item index="4" class="menu-item-4">栏目四</el-menu-item>
+          <el-menu-item index="5" class="menu-item-5">栏目五</el-menu-item>
           <div class="div-button-1">
             <el-button class="button-1" @click="show = !show" circle>
               <el-icon><Search /></el-icon>
@@ -106,10 +106,10 @@
                 @open="handleOpen"
                 @close="handleClose"
               >
-                <el-sub-menu index="1">
+                <el-sub-menu index="1" >
                   <template #title>
-                    <el-icon><location /></el-icon>
-                    <span>Navigator One</span>
+                    <el-icon class="left-icon-1"><location/></el-icon>
+                    <span class="left-label-1">侧栏一</span>
                   </template>
                   <el-menu-item-group title="Group One">
                     <el-menu-item index="1-1" style="justify-content: center"
@@ -126,16 +126,16 @@
                   </el-menu-item-group>
                 </el-sub-menu>
                 <el-menu-item index="2">
-                  <el-icon><icon-menu /></el-icon>
-                  <span>Navigator Two</span>
+                  <el-icon class="left-icon-2"><icon-menu /></el-icon>
+                  <span class="left-label-2">侧栏二</span>
                 </el-menu-item>
                 <el-menu-item index="3">
-                  <el-icon><document /></el-icon>
-                  <span>Navigator Three</span>
+                  <el-icon class="left-icon-3"><document /></el-icon>
+                  <span class="left-label-3">侧栏三</span>
                 </el-menu-item>
                 <el-menu-item index="4">
-                  <el-icon><setting /></el-icon>
-                  <span>Navigator Four</span>
+                  <el-icon class="left-icon-4"><setting /></el-icon>
+                  <span class="left-label-4">侧栏四</span>
                 </el-menu-item>
               </el-menu>
             </el-col>
@@ -150,15 +150,14 @@
 <script>
 import {
   Search,
-  // Document,
+  Document,
   Menu as IconMenu,
-  // Location,
-  // Setting,
+  Location,
+  Setting,
   UserFilled,
   Sunny,
   Moon,
   Bicycle,
-  Setting,
 } from "@element-plus/icons-vue";
 import { ref } from "vue";
 // import HomePage from "./components/HomePage.vue";
@@ -179,15 +178,14 @@ export default {
   },
   components: {
     Search,
-    // Document,
+    Document,
     IconMenu,
-    // Location,
-    // Setting,
+    Location,
+    Setting,
     UserFilled,
     Sunny,
     Moon,
     Bicycle,
-    Setting
 
     // HomePage,
   },
