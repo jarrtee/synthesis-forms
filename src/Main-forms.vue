@@ -12,28 +12,37 @@
                 text-color="#333"
                 active-text-color="#333"
                 :ellipsis="false" -->
-          <el-sub-menu index="6" class="menu-item-6">
-            <template #title>栏目一</template>
+          <!-- <el-sub-menu index="6" class="menu-item-6">
+            <el-icon class="title-icon-1"><HomeFilled/></el-icon>
+            <template #title>主页</template>
             <el-menu-item index="6-1">item one</el-menu-item>
             <el-menu-item index="6-2">item two</el-menu-item>
             <el-menu-item index="6-3">item three</el-menu-item>
-          </el-sub-menu>
-          <el-menu-item index="1" class="menu-item-1">API</el-menu-item>
-          <el-sub-menu index="2" class="menu-item-2">
-            <template #title>栏目二</template>
-            <el-menu-item index="2-1">item one</el-menu-item>
-            <el-menu-item index="2-2">item two</el-menu-item>
-            <el-menu-item index="2-3">item three</el-menu-item>
-            <el-sub-menu index="2-4">
-              <template #title>item four</template>
-              <el-menu-item index="2-4-1">item one</el-menu-item>
-              <el-menu-item index="2-4-2">item two</el-menu-item>
-              <el-menu-item index="2-4-3">item three</el-menu-item>
-            </el-sub-menu>
-          </el-sub-menu>
-          <el-menu-item index="3" class="menu-item-3">栏目三</el-menu-item>
-          <el-menu-item index="4" class="menu-item-4">栏目四</el-menu-item>
-          <el-menu-item index="5" class="menu-item-5">栏目五</el-menu-item>
+          </el-sub-menu> -->
+          <el-menu-item index="6" class="menu-item-6">
+            <span class="title-label-1"><strong>主页</strong></span>
+            <el-icon class="title-icon-1"><HomeFilled /></el-icon>
+          </el-menu-item>
+          <el-menu-item index="1" class="menu-item-1">
+            <span class="title-label-2"><strong>API</strong></span>
+            <el-icon class="title-icon-2"><Link /></el-icon>
+          </el-menu-item>
+          <el-menu-item index="2" class="menu-item-2">
+            <span class="title-label-3"><strong>栏目二</strong></span>
+            <el-icon class="title-icon-3"><Grid /></el-icon>
+          </el-menu-item>
+          <el-menu-item index="3" class="menu-item-3">
+            <span class="title-label-4"><strong>栏目三</strong></span>
+            <el-icon class="title-icon-4"><Coin /></el-icon>
+          </el-menu-item>
+          <el-menu-item index="4" class="menu-item-4">
+            <span class="title-label-5"><strong>栏目四</strong></span>
+            <el-icon class="title-icon-5"><Calendar /></el-icon>
+          </el-menu-item>
+          <el-menu-item index="5" class="menu-item-5">
+            <span class="title-label-6"><strong>栏目五</strong></span>
+            <el-icon class="title-icon-6"><Money /></el-icon>
+          </el-menu-item>
           <div class="div-button-1">
             <el-button class="button-1" @click="show = !show" circle>
               <el-icon><Search /></el-icon>
@@ -62,7 +71,7 @@
             </el-button>
           </div>
           <div class="div-button-2">
-            <el-button class="button-3" @click="TEXTPUT" circle>
+            <el-button class="button-3" @click = "Create_account" circle>
               <el-icon><UserFilled /></el-icon>
             </el-button>
           </div>
@@ -106,9 +115,9 @@
                 @open="handleOpen"
                 @close="handleClose"
               >
-                <el-sub-menu index="1" >
+                <el-sub-menu index="1">
                   <template #title>
-                    <el-icon class="left-icon-1"><location/></el-icon>
+                    <el-icon class="left-icon-1"><location /></el-icon>
                     <span class="left-label-1">侧栏一</span>
                   </template>
                   <el-menu-item-group title="Group One">
@@ -158,10 +167,18 @@ import {
   Sunny,
   Moon,
   Bicycle,
+  HomeFilled,
+  Link,
+  Grid,
+  Coin,
+  Calendar,
+  Money,
 } from "@element-plus/icons-vue";
 import { ref } from "vue";
 // import HomePage from "./components/HomePage.vue";
 import { useDark, useToggle } from "@vueuse/core";
+import Account_FormVue from "./components/Account_Form.vue";
+
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 // const isDarkTheme = ref("true")
@@ -186,7 +203,12 @@ export default {
     Sunny,
     Moon,
     Bicycle,
-
+    HomeFilled,
+    Link,
+    Grid,
+    Coin,
+    Calendar,
+    Money,
     // HomePage,
   },
   directives: {
@@ -202,9 +224,18 @@ export default {
       activeIndex.value = index;
     }
 
+    function Create_account() {
+      {
+        {
+          Account_FormVue;
+        }
+      }
+    }
+
     return {
       handleSelect,
       toggleDark,
+      Create_account,
     };
   },
 };
