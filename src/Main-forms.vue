@@ -71,9 +71,10 @@
             </el-button>
           </div>
           <div class="div-button-2">
-            <el-button class="button-3" @click = "Create_account" circle>
+            <el-button class="button-3" @click="Create_account = true" circle>
               <el-icon><UserFilled /></el-icon>
             </el-button>
+            <Account_Form v-model="Create_account" /> 
           </div>
           <div class="div-button-6">
             <el-button class="button-6" @click="TEXTPUT" circle>
@@ -175,14 +176,11 @@ import {
   Money,
 } from "@element-plus/icons-vue";
 import { ref } from "vue";
-// import HomePage from "./components/HomePage.vue";
 import { useDark, useToggle } from "@vueuse/core";
-import Account_FormVue from "./components/Account_Form.vue";
+import Account_Form from "./components/Account_Form.vue";
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-// const isDarkTheme = ref("true")
-
 const activeIndex = ref("1");
 
 export default {
@@ -191,6 +189,7 @@ export default {
       show: false,
       input: "",
       isDarkTheme: false,
+      Create_account: false,
     };
   },
   components: {
@@ -209,7 +208,7 @@ export default {
     Coin,
     Calendar,
     Money,
-    // HomePage,
+    Account_Form,
   },
   directives: {
     focus: {
@@ -224,18 +223,12 @@ export default {
       activeIndex.value = index;
     }
 
-    function Create_account() {
-      {
-        {
-          Account_FormVue;
-        }
-      }
-    }
+    // const Create_account = () => {
 
+    // }
     return {
       handleSelect,
       toggleDark,
-      Create_account,
     };
   },
 };
