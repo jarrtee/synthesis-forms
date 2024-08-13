@@ -7,4 +7,75 @@
         background-color:white;
         text-align: left;
       }
+      .el-dialog__wrapper {
+        border: none !important; /* 去除边框 */
+        box-shadow: none !important; /* 去除阴影 */
+      }
 }
+
+.layout-container-demo{
+  .el-header {
+    position: relative;
+    background-color: var(--el-color-primary-light-7);
+    color: var(--el-text-color-primary);
+  }
+  .el-aside {
+    color: var(--el-text-color-primary);
+    background: var(--el-color-primary-light-8);
+    height: 600px;
+    background-color: transparent;
+    width: 120px;
+    border-style: solid;//添加边框
+    border-width: 1px; /* 边框宽度 */
+    border-color: #303133; /* 你想要的边框颜色 */
+  }
+  .el-menu {
+    border-right: none;
+    background-color: red;
+    position:absolute;
+    width: 120px;
+
+    //meun点击后的背景色
+    .el-menu-item.is-active {
+      background-color:azure; /* 你想要的背景色 */
+    }
+
+    //meun选中后的背景色
+    .el-menu-item:hover {
+      color: black;
+      background-color: #eaeeff !important;
+      }
+    
+  }
+
+  .el-main {
+    padding: 0;
+    background-color: aqua;
+    border-style: solid;//添加边框
+    border-width: 1px; /* 边框宽度 */
+    border-color: #303133; /* 你想要的边框颜色 */
+  }
+  .toolbar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    right: 20px;
+  }
+  .menu-item-1{
+    position:absolute;
+    width: 120px;
+    font-size:15px;
+  }
+  .title-label-1{
+    position: absolute;
+    right: 14px;
+  }
+  .title-icon-1{
+    position: absolute;
+    left: 20px;
+    top: 7px;
+    font-size: 18px;
+  }
+}
+

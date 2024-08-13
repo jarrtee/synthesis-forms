@@ -12,34 +12,46 @@
         <span>用户管理</span>
       </div>
     </template>
-    <el-radio-group v-model="size" aria-label="size control">
-      <el-radio-button value="large">large</el-radio-button>
-      <el-radio-button value="default">default</el-radio-button>
-      <el-radio-button value="small">small</el-radio-button>
-    </el-radio-group>
+    <el-container class="layout-container-demo">
+      <el-aside width="100px">
+        <el-scrollbar>
+          <el-menu
+          :default-active="activeIndex"
+          class="el-menu-demo"
+          mode="horizontal"
+          @select="handleSelect"
+          :ellipsis="false"
+          >
+          <el-menu-item index="1" class="menu-item-1">
+            <span class="title-label-1"><strong>主页主页</strong></span>
+            <el-icon class="title-icon-1"><HomeFilled /></el-icon>
+          </el-menu-item>
+          </el-menu>
+        </el-scrollbar>
+      </el-aside>
+      <el-main>Main</el-main>
+    </el-container>
   </el-dialog>
 </template>
 
 <script>
-
-// import { ref } from 'vue'
-
+import {
+  HomeFilled,
+} from "@element-plus/icons-vue";
 
 export default {
-
   components: {
-    
+    HomeFilled
   },
   setup() {
-
-    return{
-    }
+    return {};
   },
 };
 </script>
 
 <style lang="less" scoped>
-.Vue3Barcode path, .Vue3Barcode rect {
+.Vue3Barcode path,
+.Vue3Barcode rect {
   overflow: visible;
 }
 @import url("./Less/Account_From.less");
