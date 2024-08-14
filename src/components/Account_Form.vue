@@ -23,14 +23,17 @@
               @select="indexselect"
               @open="handleOpen"
               @close="handleClose"
+              :router="true"
             >
               <el-menu-item index="1">
                 <el-icon class="left-icon-1"><EditPen /></el-icon>
                 <span class="left-label-1"><strong>基础信息</strong></span>
+                <router-link :to="{ path: '/FormAddaccount' }" ></router-link>
               </el-menu-item>
               <el-menu-item index="2">
                 <el-icon class="left-icon-1"><User /></el-icon>
                 <span class="left-label-1"><strong>添加用户</strong></span>
+                <router-link :to="{ path: '/FormAddaccount' }" />
               </el-menu-item>
               <el-menu-item index="3">
                 <el-icon class="left-icon-1"><Memo /></el-icon>
@@ -48,7 +51,10 @@
           </el-col>
         </el-row>
       </el-aside>
-      <el-main>Main</el-main>
+      <el-main>
+        <router-view>
+        </router-view>
+      </el-main>
     </el-container>
   </el-dialog>
 </template>
@@ -60,7 +66,8 @@ import { ref } from "vue";
 export default {
   date() {
     return {
-      
+      basic_information: false,
+      Add_account: false,
     };
   },
   components: {
@@ -71,16 +78,15 @@ export default {
     Bell,
   },
   setup() {
-
     const dialogclose = () => {
-      defaultactive.value = '1'
+      defaultactive.value = "1";
     };
 
-    const indexselect = (index) =>{
-      defaultactive.value = index
-    }
+    const indexselect = (index) => {
+      defaultactive.value = index;
+    };
 
-    const defaultactive = ref('1');
+    const defaultactive = ref("1");
 
     return {
       defaultactive,
