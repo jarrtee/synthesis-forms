@@ -111,10 +111,11 @@
           <el-row class="row-menu">
             <el-col :span="12">
               <el-menu
-                default-active="2"
+                default-active="/"
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
+                router
               >
                 <el-sub-menu index="1">
                   <template #title>
@@ -135,7 +136,7 @@
                     >
                   </el-menu-item-group>
                 </el-sub-menu>
-                <el-menu-item index="2">
+                <el-menu-item index="/">
                   <el-icon class="left-icon-2"><icon-menu /></el-icon>
                   <span class="left-label-2">侧栏二</span>
                 </el-menu-item>
@@ -151,7 +152,9 @@
             </el-col>
           </el-row>
         </el-aside>
-        <el-main> </el-main>
+        <el-main> 
+          <router-view />
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -178,6 +181,7 @@ import {
 import { ref } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
 import Account_Form from "./components/Account_Form.vue";
+import { useRoute } from "vue-router";
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
@@ -226,6 +230,9 @@ export default {
     // const Create_account = () => {
 
     // }
+    const route = useRoute()
+    console.log(route);
+
     return {
       handleSelect,
       toggleDark,
