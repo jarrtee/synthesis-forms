@@ -1,12 +1,9 @@
 <template>
-    <h2>This is an about page</h2>
+  <h2>This is an about page</h2>
 </template>
 
 <script>
-export default {
-  
-}
+export default {};
 </script>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="main">
+  <div id="body">
     <el-container>
       <el-header>
         <el-menu
@@ -136,7 +136,7 @@
                     >
                   </el-menu-item-group>
                 </el-sub-menu>
-                <el-menu-item index="/">
+                <el-menu-item index="2">
                   <el-icon class="left-icon-2"><icon-menu /></el-icon>
                   <span class="left-label-2">侧栏二</span>
                 </el-menu-item>
@@ -153,7 +153,7 @@
           </el-row>
         </el-aside>
         <el-main> 
-          <router-view />
+          <!-- <router-view /> -->
         </el-main>
       </el-container>
     </el-container>
@@ -180,7 +180,7 @@ import {
 } from "@element-plus/icons-vue";
 import { ref } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
-import Account_Form from "./components/Account_Form.vue";
+import Account_Form from "../../components/Account_Form.vue";
 import { useRoute } from "vue-router";
 
 const isDark = useDark();
@@ -242,5 +242,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import url("./Main-forms.less");
+@import url("../Main_layout/Main-forms.less");
 </style>

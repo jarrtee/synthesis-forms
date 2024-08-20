@@ -1,7 +1,9 @@
 <template>
-  <div >
-    <h2>0.0</h2>
-  </div>
+  <h2>This a an assft page</h2>
 </template>
+
+<script>
+export default {};
+</script>
 
 <style lang="less" scoped></style>

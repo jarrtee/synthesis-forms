@@ -50,7 +50,7 @@
           </el-row>
         </el-aside>
         <el-main>
-          <router-view />
+          <!-- <router-view /> -->
         </el-main>
       </el-container>
     </el-dialog>

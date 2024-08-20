@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import Main from './Main-forms.vue'
+import Main from './Main.vue'
 import router from './router'
 import store from './store'
 import ElementPlus from 'element-plus'
@@ -15,10 +15,12 @@ import VueBarcode from 'vue3-barcode'
 
 
 
+
 // createApp(Main).use(store).use(router).use(ElementPlus).use(Antd).use(VueBarcode).mount('#main')
 
 const app = createApp(Main)
 app.use(store).use(router).use(ElementPlus).use(Antd).use(VueBarcode).mount('#main')
+
 
 Object.keys(Icons).forEach(key => {  
     app.component(key, Icons[key]);  

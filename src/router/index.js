@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Mainforms from '@/Main-forms.vue'
-import Accountform from '@/components/Account_Form.vue'
+import Main_forms from '@/views/Main_layout/Main-forms.vue'
+// import Accountform from '@/components/Account_Form.vue'
+import Login from "@/views/Login/Login.vue";
 
 
 
@@ -8,61 +9,39 @@ const routes = [
 
   {
     path:'/',
-    component:Mainforms,
+    component:Main_forms,
+    children:[
+    ]
+  },
+
+  {
+    path:"/login" ,
+    name:"login",
+    component: Login,
+  },
+
+  {
+    path: '/forminformation', 
+    name: 'forminformation',
+    components: {two:() => import('../views/Form_information.vue')},
     children:[
       {
-        path: '/',
-        name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+        path:'/formAddaccount',
+        name:'formAddaccount',
+        component: () => import('../views/Form_Addaccount.vue')
       },
     ]
   },
 
   {
-    path:'/',
-    name:'accountform',
-    component:Accountform,
-    children:[
-      {
-        path:'/formAddaccount', 
-        name:'formAddaccount',
-        Components:()=>import('@/views/Form_Addaccount.vue'),
-        children:[
-          {
-            path:'/forminformation',
-            name:'forminformation',
-            Components:()=>import('@/views/Form_information.vue')
-          },
-        ]
-      },
-    ]
+    path: '/about',
+    name: 'about',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   },
 
-
-
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  // },
-  // {
-  //   path:'/formAddaccount', 
-  //   name:'formAddaccount',
-  //   Components:()=>import('@/views/Form_Addaccount.vue'),
-  //   children:[
-  //     {
-  //       path:'/forminformation',
-  //       name:'forminformation',
-  //       Components:()=>import('@/views/Form_information.vue')
-  //     },
-  //   ]
-  // },
 ]
 
 
