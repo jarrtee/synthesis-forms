@@ -23,13 +23,13 @@
                 @select="indexselect"
                 @open="handleOpen"
                 @close="handleClose"
-                router
+                
               >
-                <el-menu-item index="/forminformation" >
+                <el-menu-item index="1" >
                   <el-icon class="left-icon-1"><EditPen /></el-icon>
                   <span class="left-label-1"><strong>基础信息</strong></span>
                 </el-menu-item>
-                <el-menu-item index="/formAddaccount">
+                <el-menu-item index="2">
                   <el-icon class="left-icon-1"><User /></el-icon>
                   <span class="left-label-1"><strong>添加用户</strong></span>
                 </el-menu-item>
@@ -81,14 +81,14 @@ export default {
   setup() {
     
     const dialogclose = () => {
-      defaultactive.value = "/forminformation";
+      defaultactive.value = "1";
     };
 
     const indexselect = (index) => {
       defaultactive.value = index;
     };
 
-    const defaultactive = ref("/forminformation");
+    const defaultactive = ref("1");
     const route = useRouter();
 
     return {
