@@ -1,7 +1,7 @@
 <template>
   <div id="body">
     <div class="main">
-      <div class="title"><strong>Welcome to Login</strong></div>
+      <div class="title"><strong>Welcome to NGTB MGT</strong></div>
       <div class="button_control">
         <el-button type="primary" circle>
           <el-icon><Edit /></el-icon>
@@ -24,9 +24,10 @@
           ><strong>用户名</strong></el-tag
         >
         <el-input
-          v-model="input"
+          v-model="Account_inf.Username"
           style="width: 240px"
           placeholder="Usernasme"
+          v-on:keyup.enter="enterLogin"
         />
       </div>
       <div class="input-2">
@@ -40,10 +41,14 @@
           ><strong>密码</strong></el-tag
         >
         <el-input
-          v-model="input1"
+          v-model="Account_inf.password"
           style="width: 240px; left: 7px"
           placeholder="Password"
+          v-on:keyup.enter="enterLogin"
+          type="password"
+          :show-password="true"
         />
+
       </div>
       <div class="button-forget">
         <el-button
@@ -66,7 +71,6 @@
           round
           style="width: 180px"
           class="login"
-          @keydown.enter="enterdown()"
           @click="enterLogin"
           >Login in</el-button
         >
@@ -75,44 +79,75 @@
   </div>
 </template>
 <script>
-import { Edit, Check, Message } from "@element-plus/icons-vue";
-import { ref } from "vue";
+import { Edit, Check, Message,View ,Hide} from "@element-plus/icons-vue";
+import { ElMessage } from "element-plus";
+import { ref, reactive } from "vue";
+
 
 export default {
   date() {
     return {};
   },
-  mounted() {
-    // onMounted(() => {
-    //   //绑定监听事件
-    //   window.addEventListener("enterdown", enterdown);
-    // });
-    // onUnmounted(() => {
-    //   //销毁事件
-    //   window.removeEventListener("enterdown", enterdown, false);
-    // });
-  },
+  mounted() {},
   components: {
     Edit,
     Check,
     Message,
+    View,
+    Hide
   },
   setup() {
-    const input = ref("");
-    const input1 = ref("");
     const checked = ref("false");
+    const Account_inf = reactive({
+      Username: "",
+      password: "",
+    });
 
-    const enterdown = (e) => {
-	if (e.keyCode == 13 || e.keyCode == 100) {
-		enterLogin()
-	}
-}
+    const enterLogin = () => {
+      console.log("1");
+    };
+
+    const validatePass = (value, callback)=>{
+      if(value === ""){
+        //若不能通过校验,规定使用calback,传入一个ERROR对象,把信息传入error对象
+        callback(new Error("请输入密码"));
+      }else{
+        //校验成功,直接调用callback
+        callback();
+      }
+    };
+    const rules = reactive({
+      username:[{ required:true,message:"请输入用户名",trigger:"blur"}],
+      password:[{ validator: validatePass,trigger:"blur"}],
+    });
+    const submitForm = () =>{
+      if(!formEl)return;
+      formEl.validate((valid)=>{
+        if(valid){
+          loginAPI(ruleForm).then((res)=>{
+            if(res.code === 200){
+              //登录成功
+              //1、存code
+              localStorage.setItem("token",res.date.tokenHead+res.date.token);
+              //跳转
+                
+              ElMessage.success("登录成功");
+            }
+          });
+        }else{
+          //提示用户
+          ElMessage.error("0.0")
+          //记得如果是校验失败,要返回false
+          return false;
+        }
+      })
+    }
+
 
     return {
-      input,
-      input1,
+      Account_inf,
       checked,
-      enterdown
+      enterLogin,
     };
   },
 };
