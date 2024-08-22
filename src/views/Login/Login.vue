@@ -1,7 +1,7 @@
 <template>
   <div id="body">
     <div class="main">
-      <div class="title"><strong>Welcome to NGTB MGT</strong></div>
+      <div class="title"><strong>{{Login_title}}</strong></div>
       <div class="button_control">
         <el-button type="primary" circle>
           <el-icon><Edit /></el-icon>
@@ -82,11 +82,14 @@
 import { Edit, Check, Message,View ,Hide} from "@element-plus/icons-vue";
 import { ElMessage } from "element-plus";
 import { ref, reactive } from "vue";
+import { useRouter } from "vue-router";
 
 
 export default {
   date() {
-    return {};
+    return {
+      
+    };
   },
   mounted() {},
   components: {
@@ -105,6 +108,33 @@ export default {
 
     const enterLogin = () => {
       console.log("1");
+      if(Account_inf.Username == 'admin' && Account_inf.password == '123456'){
+        router.push('/')
+        ElMessage("登陆成功!")
+      }
+      else{
+        ElMessage("用户名/密码错误")
+      }
+      // if(!formEl)return;
+      // formEl.validate((valid)=>{
+      //   if(valid){
+      //     loginAPI(ruleForm).then((res)=>{
+      //       if(res.code === 200){
+      //         //登录成功
+      //         //1、存code
+      //         localStorage.setItem("token",res.date.tokenHead+res.date.token);
+      //         //跳转
+      //         router.push('/')
+      //         ElMessage.success("登录成功");
+      //       }
+      //     });
+      //   }else{
+      //     //提示用户
+      //     ElMessage.error("0.0")
+      //     //记得如果是校验失败,要返回false
+      //     return false;
+      //   }
+      // })
     };
 
     const validatePass = (value, callback)=>{
@@ -120,34 +150,16 @@ export default {
       username:[{ required:true,message:"请输入用户名",trigger:"blur"}],
       password:[{ validator: validatePass,trigger:"blur"}],
     });
-    const submitForm = () =>{
-      if(!formEl)return;
-      formEl.validate((valid)=>{
-        if(valid){
-          loginAPI(ruleForm).then((res)=>{
-            if(res.code === 200){
-              //登录成功
-              //1、存code
-              localStorage.setItem("token",res.date.tokenHead+res.date.token);
-              //跳转
-                
-              ElMessage.success("登录成功");
-            }
-          });
-        }else{
-          //提示用户
-          ElMessage.error("0.0")
-          //记得如果是校验失败,要返回false
-          return false;
-        }
-      })
-    }
 
+
+    const router = useRouter()
+    const Login_title = ref("welcome to")//NGTB MGT
 
     return {
       Account_inf,
       checked,
       enterLogin,
+      Login_title,
     };
   },
 };
