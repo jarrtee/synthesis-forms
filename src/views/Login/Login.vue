@@ -1,7 +1,9 @@
 <template>
   <div id="body">
     <div class="main">
-      <div class="title"><strong>{{Login_title}}</strong></div>
+      <div class="title">
+        <strong>{{ Login_title }}</strong>
+      </div>
       <div class="button_control">
         <el-button type="primary" circle>
           <el-icon><Edit /></el-icon>
@@ -48,7 +50,6 @@
           type="password"
           :show-password="true"
         />
-
       </div>
       <div class="button-forget">
         <el-button
@@ -79,17 +80,15 @@
   </div>
 </template>
 <script>
-import { Edit, Check, Message,View ,Hide} from "@element-plus/icons-vue";
+import { Edit, Check, Message, View, Hide } from "@element-plus/icons-vue";
 import { ElMessage } from "element-plus";
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
-
+// import $ from 'jquery'
 
 export default {
   date() {
-    return {
-      
-    };
+    return {};
   },
   mounted() {},
   components: {
@@ -97,7 +96,7 @@ export default {
     Check,
     Message,
     View,
-    Hide
+    Hide,
   },
   setup() {
     const checked = ref("false");
@@ -108,12 +107,16 @@ export default {
 
     const enterLogin = () => {
       console.log("1");
-      if(Account_inf.Username == 'admin' && Account_inf.password == '123456'){
-        router.push('/')
-        ElMessage("登陆成功!")
-      }
-      else{
-        ElMessage("用户名/密码错误")
+      if (Account_inf.Username == "admin" && Account_inf.password == "123456") {
+        router.push("/");
+        ElMessage("登陆成功!");
+      } else if (
+        Object.keys(Account_inf.Username).length == 0 ||
+        Object.keys(Account_inf.password).length == 0
+      ) {
+        ElMessage("请输入用户名/密码");//Object.keys().length 判断对象是否为空   $.isEmptyObject() 判断是否存在对象
+      } else {
+        ElMessage("用户名/密码错误");
       }
       // if(!formEl)return;
       // formEl.validate((valid)=>{
@@ -137,23 +140,22 @@ export default {
       // })
     };
 
-    const validatePass = (value, callback)=>{
-      if(value === ""){
+    const validatePass = (value, callback) => {
+      if (value === "") {
         //若不能通过校验,规定使用calback,传入一个ERROR对象,把信息传入error对象
         callback(new Error("请输入密码"));
-      }else{
+      } else {
         //校验成功,直接调用callback
         callback();
       }
     };
     const rules = reactive({
-      username:[{ required:true,message:"请输入用户名",trigger:"blur"}],
-      password:[{ validator: validatePass,trigger:"blur"}],
+      username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+      password: [{ validator: validatePass, trigger: "blur" }],
     });
 
-
-    const router = useRouter()
-    const Login_title = ref("welcome to")//NGTB MGT
+    const router = useRouter();
+    const Login_title = ref("welcome to"); //NGTB MGT
 
     return {
       Account_inf,
