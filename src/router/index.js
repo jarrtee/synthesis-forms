@@ -9,8 +9,12 @@ const routes = [
 
   {
     path:'/',
-    component:Main_forms,
     redirect:(() => { return { path: '/login' } }), //路由重定向
+
+  },
+  {
+    path:'/HomePage',
+    component:Main_forms,
     children:[
     ]
   },

@@ -107,8 +107,8 @@ export default {
 
     const enterLogin = () => {
       console.log("1");
-      if (Account_inf.Username == "admin" && Account_inf.password == "123456") {
-        router.push("/");
+      if (Account_inf.Username == "admin" && Account_inf.password == "123") {
+        router.push("/HomePage");
         ElMessage("登陆成功!");
       } else if (
         Object.keys(Account_inf.Username).length == 0 ||
