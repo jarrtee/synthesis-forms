@@ -30,6 +30,7 @@
           style="width: 240px"
           placeholder="Usernasme"
           v-on:keyup.enter="enterLogin"
+          prefix-icon = "UserFilled"
         />
       </div>
       <div class="input-2">
@@ -49,6 +50,7 @@
           v-on:keyup.enter="enterLogin"
           type="password"
           :show-password="true"
+          prefix-icon = "Lock"
         />
       </div>
       <div class="button-forget">
@@ -80,7 +82,7 @@
   </div>
 </template>
 <script>
-import { Edit, Check, Message, View, Hide } from "@element-plus/icons-vue";
+import { Edit, Check, Message, View, Hide, UserFilled, Lock } from "@element-plus/icons-vue";
 import { ElMessage } from "element-plus";
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
@@ -97,6 +99,8 @@ export default {
     Message,
     View,
     Hide,
+    UserFilled,
+    Lock
   },
   setup() {
     const checked = ref("false");

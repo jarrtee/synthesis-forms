@@ -66,15 +66,21 @@
             </el-input-group>
           </div>
           <div class="div-button-3">
-            <el-button class="button-4" @click="menuchoose" circle>
+            <el-button
+              class="button-4"
+              circle
+              @mouseover="Touch"
+              @mouseleave="ButtonLeave"
+            >
               <el-icon><icon-menu /></el-icon>
             </el-button>
+            <TitleMeun v-if="MeunTouch" />
           </div>
           <div class="div-button-2">
             <el-button class="button-3" @click="Create_account = true" circle>
               <el-icon><UserFilled /></el-icon>
             </el-button>
-            <Account_Form v-model="Create_account" /> 
+            <Account_Form v-model="Create_account" />
           </div>
           <div class="div-button-6">
             <el-button class="button-6" @click="TEXTPUT" circle>
@@ -152,7 +158,7 @@
             </el-col>
           </el-row>
         </el-aside>
-        <el-main> 
+        <el-main>
           <!-- <router-view /> -->
         </el-main>
       </el-container>
@@ -178,14 +184,17 @@ import {
   Calendar,
   Money,
 } from "@element-plus/icons-vue";
-import { ref } from "vue";
+import { ref  } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
 import Account_Form from "../../components/Account_Form.vue";
 import { useRoute } from "vue-router";
+import TitleMeun from "../../components/TitleMeun.vue";
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 const activeIndex = ref("1");
+
+
 
 export default {
   data() {
@@ -194,6 +203,7 @@ export default {
       input: "",
       isDarkTheme: false,
       Create_account: false,
+      // MeunTouch: false,
     };
   },
   components: {
@@ -213,6 +223,7 @@ export default {
     Calendar,
     Money,
     Account_Form,
+    TitleMeun,
   },
   directives: {
     focus: {
@@ -227,15 +238,23 @@ export default {
       activeIndex.value = index;
     }
 
-    // const Create_account = () => {
-
-    // }
-    const route = useRoute()
+    const route = useRoute();
     console.log(route);
+
+    const ButtonLeave=()=>{
+      
+    }
+    let MeunTouch = ref(false)
+    const Touch = ()=>{
+      console.log('1')
+      MeunTouch = true
+    }
 
     return {
       handleSelect,
       toggleDark,
+      Touch,
+      MeunTouch
     };
   },
 };
