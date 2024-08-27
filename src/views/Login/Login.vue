@@ -111,7 +111,7 @@ export default {
 
     const enterLogin = () => {
       console.log("1");
-      if (Account_inf.Username == "admin" && Account_inf.password == "123") {
+      if (Account_inf.Username == "admin" && Account_inf.password == "123456") {
         router.push("/HomePage");
         ElMessage("登陆成功!");
       } else if (
