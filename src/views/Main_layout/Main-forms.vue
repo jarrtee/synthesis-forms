@@ -2,23 +2,15 @@
   <div id="body">
     <el-container>
       <el-header>
+        <!--Title菜单-->
+        <!--Titleメニュー-->
         <el-menu
           :default-active="activeIndex"
           class="el-menu-demo"
           mode="horizontal"
           @select="handleSelect"
           :ellipsis="false"
-          ><!-- background-color="transparent"
-                text-color="#333"
-                active-text-color="#333"
-                :ellipsis="false" -->
-          <!-- <el-sub-menu index="6" class="menu-item-6">
-            <el-icon class="title-icon-1"><HomeFilled/></el-icon>
-            <template #title>主页</template>
-            <el-menu-item index="6-1">item one</el-menu-item>
-            <el-menu-item index="6-2">item two</el-menu-item>
-            <el-menu-item index="6-3">item three</el-menu-item>
-          </el-sub-menu> -->
+          >
           <el-menu-item index="6" class="menu-item-6">
             <span class="title-label-1"><strong>主页</strong></span>
             <el-icon class="title-icon-1"><HomeFilled /></el-icon>
@@ -65,17 +57,21 @@
               </transition>
             </el-input-group>
           </div>
+          <!-- 创建Title菜单按钮-->
+          <!-- Titleメニューボタンを作成--->
           <div class="div-button-3">
             <el-button
               class="button-4"
               circle
-              @mouseover="Touch"
-              @mouseleave="ButtonLeave"
+              @mouseenter="Touch"
+              @mouseleave="TouchLeave"
             >
               <el-icon><icon-menu /></el-icon>
             </el-button>
-            <TitleMeun v-if="MeunTouch" />
+            <TitleMeun v-if="MeunTouch" @mouseenter="MeunsTouch" @mouseleave="MeunTouchLeave" />
           </div>
+          <!--创建用户设置按钮-->
+          <!--ユーザー設定ボタンの作成-->
           <div class="div-button-2">
             <el-button class="button-3" @click="Create_account = true" circle>
               <el-icon><UserFilled /></el-icon>
@@ -87,6 +83,8 @@
               <el-icon><Bicycle /></el-icon>
             </el-button>
           </div>
+          <!--创建设置按钮-->
+          <!--設定ボタンの作成-->
           <div class="div-button-7">
             <el-button class="button-7" @click="TEXTPUT" circle>
               <el-icon><Setting /></el-icon>
@@ -95,6 +93,8 @@
           <div class="div-button-4">
             <el-button class="button-5"> </el-button>
           </div>
+          <!--主题切换-->
+          <!--トピックの切り替え-->
           <div class="div-button-5">
             <el-switch
               v-model="isDarkTheme"
@@ -234,27 +234,49 @@ export default {
     },
   },
   setup() {
+    //Meun选择事件  Meun選択イベント
     function handleSelect(index) {
       activeIndex.value = index;
     }
-
+    //创建路由实例   ルーティングインスタンスの作成
     const route = useRoute();
     console.log(route);
-
-    const ButtonLeave=()=>{
-      
+    const MeunTouch = ref(false)
+    const MeunisTouched = ref(false)
+    const MeunButton_isTouched = ref(false)
+    //Meun按钮鼠标离开事件  Meunボタンマウス離脱イベント
+    const TouchLeave=()=>{
+      MeunButton_isTouched.value = false;
+      console.log(MeunButton_isTouched.value)
+      if(MeunButton_isTouched.value == false && MeunisTouched.value == false){
+        MeunTouch.value = !MeunTouch.value
+      }
     }
-    let MeunTouch = ref(false)
+    //Meun按钮鼠标进入事件  Meunボタンマウスがイベントに入る
     const Touch = ()=>{
-      console.log('1')
-      MeunTouch = true
+      MeunButton_isTouched.value = true;
+      console.log(MeunButton_isTouched.value)
+      MeunTouch.value = !MeunTouch.value
+    }
+    //Meun菜单鼠标进入事件  Meunメニューマウス入力イベント
+    const MeunsTouch=()=>{
+      MeunTouch.value = true
+    }
+    //Meun菜单鼠标离开事件  Meunメニューマウス離脱イベント
+    const MeunTouchLeave=()=>{
+      MeunTouch.value = !MeunTouch.value
     }
 
     return {
       handleSelect,
       toggleDark,
+      MeunTouch,
       Touch,
-      MeunTouch
+      TouchLeave,
+      MeunisTouched,
+      MeunButton_isTouched,
+      MeunsTouch,
+      MeunTouchLeave,
     };
   },
 };
