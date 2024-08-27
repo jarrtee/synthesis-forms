@@ -4,17 +4,18 @@
     <!--Meunボタンコンポーネント-->
     <el-button class="button-1">
       <span ><img src="../assets/ERP_logo.png" class="icon-1"/></span>
-      <span class="character-1"><strong>ERP</strong></span>
+      <span class="character-1"><strong>{{characterFirst}}</strong></span>
     </el-button>
     <el-button class="button-2">
       <span ><img src="../assets/MES_logo.png" class="icon-2"/></span>
-      <span class="character-2"><strong>MES</strong></span>
+      <span class="character-2"><strong>{{characterSecond}}</strong></span>
     </el-button>
   </div>
 </template>
 
 <script>
 import { Search } from "@element-plus/icons-vue";
+import {ref} from "vue"
 
 export default {
   date() {
@@ -23,6 +24,14 @@ export default {
   components: {
     Search,
   },
+  setup(){
+    const characterFirst = ref("ERP")
+    const characterSecond = ref("MES")
+    return{
+        characterFirst,
+        characterSecond,
+    }
+  }
 };
 </script>
 
