@@ -73,7 +73,7 @@
           <!--创建用户设置按钮-->
           <!--ユーザー設定ボタンの作成-->
           <div class="div-button-2">
-            <el-button class="button-3" @click="Create_account = true" circle>
+            <el-button class="button-3" @click="Create_account = true" circle >
               <el-icon><UserFilled /></el-icon>
             </el-button>
             <Account_Form v-model="Create_account" />
@@ -270,10 +270,9 @@ export default {
     const MeunTouchLeave=()=>{
       MeunTouch.value = !MeunTouch.value
     }
-    
+    //Meun各Page判断变量定义  Meun各Page判定変数定義
     const ERP_button = reactive({button_click: false})
     provide('ERP_button',ERP_button)
-
     const MES_button = reactive({button_click: false})
     provide('MES_button',MES_button)
 

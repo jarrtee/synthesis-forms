@@ -28,12 +28,12 @@ const routes = [
   {
     path: '/forminformation', 
     name: 'forminformation',
-    components: {two:() => import('../views/Form_information.vue')},
+    components: {two:() => import('../views/Account_Page/Form_information.vue')},
     children:[
       {
         path:'/formAddaccount',
         name:'formAddaccount',
-        component: () => import('../views/Form_Addaccount.vue')
+        component: () => import('../views/Account_Page/Form_Addaccount.vue')
       },
     ]
   },

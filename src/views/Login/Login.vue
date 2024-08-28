@@ -84,7 +84,7 @@
 <script>
 import { Edit, Check, Message, View, Hide, UserFilled, Lock } from "@element-plus/icons-vue";
 import { ElMessage } from "element-plus";
-import { ref, reactive } from "vue";
+import { ref, reactive, inject } from "vue";
 import { useRouter } from "vue-router";
 // import $ from 'jquery'
 
@@ -103,18 +103,21 @@ export default {
     Lock
   },
   setup() {
+    //变量定义   変数定義
+    const Login_title = ref("welcome to"); //NGTB MGT
     const checked = ref("false");
     const Account_inf = reactive({
       Username: "",
       password: "",
     });
 
+
     const enterLogin = () => {
-      console.log("1");
-      if (Account_inf.Username == "admin" && Account_inf.password == "123456") {
+      if (Account_inf.Username == "admin" && Account_inf.password == "123") {
         router.push("/HomePage");
         ElMessage("登陆成功!");
-      } else if (
+      }
+      else if (
         Object.keys(Account_inf.Username).length == 0 ||
         Object.keys(Account_inf.password).length == 0
       ) {
@@ -159,7 +162,6 @@ export default {
     });
 
     const router = useRouter();
-    const Login_title = ref("welcome to"); //NGTB MGT
 
     return {
       Account_inf,

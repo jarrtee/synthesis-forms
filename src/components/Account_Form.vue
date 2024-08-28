@@ -50,7 +50,7 @@
           </el-row>
         </el-aside>
         <el-main>
-          <!-- <router-view /> -->
+          <Forminformation v-if="Meun_select == '1'" />
         </el-main>
       </el-container>
     </el-dialog>
@@ -60,12 +60,11 @@
 import { Setting, User, EditPen, Memo, Bell } from "@element-plus/icons-vue";
 import { ref } from "vue";
 import { useRouter } from 'vue-router'
-// import Forminformation from "../components/Account_Form_control/Form_information.vue"
+import Forminformation from "../views/Account_Page/Form_information.vue"
 
 export default {
   date() {
     return {
-      basic_information: false,
       Add_account: false,
       label_1:false,
       label_2:false,
@@ -77,25 +76,30 @@ export default {
     EditPen,
     Memo,
     Bell,
+    Forminformation,
   },
   setup() {
-    
+    const route = useRouter();
+    const defaultactive = ref("1");
+    //Meun初始化选择  Meun初期化選択
     const dialogclose = () => {
       defaultactive.value = "1";
     };
-
+    //Meun选择事件  Meun選択イベント
     const indexselect = (index) => {
       defaultactive.value = index;
+      Meun_select.value = index;
+      
     };
-
-    const defaultactive = ref("1");
-    const route = useRouter();
+    //Meun选择页跳转变量定义  Meunページジャンプ変数定義の選択
+    const Meun_select = ref('1')
 
     return {
       defaultactive,
       dialogclose,
       indexselect,
       route,
+      Meun_select
     };
   },
 };
