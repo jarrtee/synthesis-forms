@@ -2,11 +2,11 @@
   <div class="body">
     <!--菜单按钮组件-->
     <!--Meunボタンコンポーネント-->
-    <el-button class="button-1">
+    <el-button class="button-1" @click="ERP_Click">
       <span ><img src="../assets/ERP_logo.png" class="icon-1"/></span>
       <span class="character-1"><strong>{{characterFirst}}</strong></span>
     </el-button>
-    <el-button class="button-2">
+    <el-button class="button-2" @click="MES_Click">
       <span ><img src="../assets/MES_logo.png" class="icon-2"/></span>
       <span class="character-2"><strong>{{characterSecond}}</strong></span>
     </el-button>
@@ -15,7 +15,7 @@
 
 <script>
 import { Search } from "@element-plus/icons-vue";
-import {ref} from "vue"
+import {ref, inject} from "vue"
 
 export default {
   date() {
@@ -27,9 +27,28 @@ export default {
   setup(){
     const characterFirst = ref("ERP")
     const characterSecond = ref("MES")
+    const MeunTouch = inject('MeunTouch')
+    //ERP按钮点击事件  ERPボタンクリックイベント
+    const ERP_button = inject('ERP_button')
+    const ERP_Click =()=>{
+      ERP_button.button_click = true
+      MES_button.button_click = false
+      MeunTouch.value = false
+    }
+    //MES按钮点击事件  MESボタンクリックイベント
+    const MES_button = inject('MES_button')
+    const MES_Click =()=>{
+      MES_button.button_click = true
+      ERP_button.button_click = false
+    }
     return{
         characterFirst,
         characterSecond,
+        ERP_Click,
+        ERP_button,
+        MES_button,
+        MES_Click,
+        MeunTouch
     }
   }
 };
@@ -42,6 +61,7 @@ export default {
   height: 200px;
   padding: 15px;
   background-color: #fafafc;
+  z-index: 9999;//堆叠顺序,至于最上层
 
   .button-1 {
     position: relative;

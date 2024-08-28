@@ -159,7 +159,8 @@
           </el-row>
         </el-aside>
         <el-main>
-          <!-- <router-view /> -->
+          <ERP_Page v-if="ERP_button.button_click" />
+          <h2 v-if="MES_button.button_click">efgh</h2>
         </el-main>
       </el-container>
     </el-container>
@@ -184,11 +185,12 @@ import {
   Calendar,
   Money,
 } from "@element-plus/icons-vue";
-import { ref  } from "vue";
+import { ref , reactive, provide  } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
 import Account_Form from "../../components/Account_Form.vue";
 import { useRoute } from "vue-router";
 import TitleMeun from "../../components/TitleMeun.vue";
+import ERP_Page from "../Main_ButtonPage/ERP_Page.vue";
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
@@ -224,6 +226,7 @@ export default {
     Money,
     Account_Form,
     TitleMeun,
+    ERP_Page,
   },
   directives: {
     focus: {
@@ -242,6 +245,7 @@ export default {
     const route = useRoute();
     console.log(route);
     const MeunTouch = ref(false)
+    provide('MeunTouch',MeunTouch)
     const MeunisTouched = ref(false)
     const MeunButton_isTouched = ref(false)
     //Meun按钮鼠标离开事件  Meunボタンマウス離脱イベント
@@ -266,6 +270,12 @@ export default {
     const MeunTouchLeave=()=>{
       MeunTouch.value = !MeunTouch.value
     }
+    
+    const ERP_button = reactive({button_click: false})
+    provide('ERP_button',ERP_button)
+
+    const MES_button = reactive({button_click: false})
+    provide('MES_button',MES_button)
 
     return {
       handleSelect,
@@ -277,6 +287,8 @@ export default {
       MeunButton_isTouched,
       MeunsTouch,
       MeunTouchLeave,
+      ERP_button,
+      MES_button,
     };
   },
 };
