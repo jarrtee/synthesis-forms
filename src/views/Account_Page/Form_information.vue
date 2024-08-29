@@ -16,6 +16,11 @@
         style="position: relative; top: 70px; left: 15px; font-weight: bolder"
       >
       </el-form-item>
+      <el-form-item
+        label="手机号"
+        style="position: relative; top: 70px; left: 16px; font-weight: bolder"
+      >
+      </el-form-item>
     </div>
     <div class="middle">
       <img :src="User_Picture" class="Picture_User" />
@@ -37,11 +42,27 @@
         type="file"
         @change="handleImageChange"
         style="display: none"
+        ref="FileInput"
       /><!--文件类型用于上传图片-->
-      <input type="text" class="User_input" />
-      <input type="text" class="User_input1" />
+      <input type="text" class="User_input" :disabled = InputVerify />
+      <input type="text" class="User_input1" :disabled = InputVerify />
     </div>
-    <div class="right"></div>
+    <div class="right">
+      <el-button
+        plain
+        @click="infEdit"
+        style="
+          position: relative;
+          width: 40px;
+          height: 20px;
+          font-size: 14px;
+          left: 120px;
+          top: -10px;
+        "
+      >
+        <strong>编辑</strong>
+      </el-button>
+    </div>
   </el-form>
 </template>
 
@@ -59,12 +80,14 @@ export default {
       name: "",
     });
     const User_Picture = ref(require("@/assets/picture1.jpg"));
+    const FileInput = ref(null);
+    const InputVerify = ref(true)
 
-    //Picture更改事件
+    //Picture更改事件  Picture変更イベント
     const Picture_Exchange = () => {
-      console.log("1");
-      handleImageChange();
+      FileInput.value.click();
     };
+    //input(File类型)图片上传事件  画像アップロードイベント
     const handleImageChange = (event) => {
       const file = event.target.files[0];
       if (!file) {
@@ -76,12 +99,19 @@ export default {
       };
       reader.readAsDataURL(file);
     };
+    //编辑按钮定义
+    const infEdit=()=>{
+      InputVerify.value = !InputVerify.value
+    }
 
     return {
       form,
       User_Picture,
       Picture_Exchange,
       handleImageChange,
+      FileInput,
+      InputVerify,
+      infEdit,
     };
   },
 };
@@ -124,5 +154,11 @@ export default {
   top: 10px;
   right: 20px;
   border: 1px solid gray;
+}
+.right {
+  // background-color: aqua;
+  float: right;
+  width: 52%;
+  height: 100%;
 }
 </style>
