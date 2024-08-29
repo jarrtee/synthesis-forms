@@ -29,24 +29,20 @@ export default {
     const characterSecond = ref("MES")
     const MeunTouch = inject('MeunTouch')
     //ERP按钮点击事件  ERPボタンクリックイベント
-    const ERP_button = inject('ERP_button')
+    const MeunSelect = inject('MeunSelect')
     const ERP_Click =()=>{
-      ERP_button.button_click = true
-      MES_button.button_click = false
+      MeunSelect.value = '7'
       MeunTouch.value = false
     }
     //MES按钮点击事件  MESボタンクリックイベント
-    const MES_button = inject('MES_button')
     const MES_Click =()=>{
-      MES_button.button_click = true
-      ERP_button.button_click = false
+      MeunSelect.value = '8'
     }
     return{
         characterFirst,
         characterSecond,
         ERP_Click,
-        ERP_button,
-        MES_button,
+        MeunSelect,
         MES_Click,
         MeunTouch
     }

@@ -11,27 +11,27 @@
           @select="handleSelect"
           :ellipsis="false"
           >
-          <el-menu-item index="6" class="menu-item-6">
+          <el-menu-item index="1" class="menu-item-6">
             <span class="title-label-1"><strong>主页</strong></span>
             <el-icon class="title-icon-1"><HomeFilled /></el-icon>
           </el-menu-item>
-          <el-menu-item index="1" class="menu-item-1">
+          <el-menu-item index="2" class="menu-item-1">
             <span class="title-label-2"><strong>API</strong></span>
             <el-icon class="title-icon-2"><Link /></el-icon>
           </el-menu-item>
-          <el-menu-item index="2" class="menu-item-2">
+          <el-menu-item index="3" class="menu-item-2">
             <span class="title-label-3"><strong>栏目二</strong></span>
             <el-icon class="title-icon-3"><Grid /></el-icon>
           </el-menu-item>
-          <el-menu-item index="3" class="menu-item-3">
+          <el-menu-item index="4" class="menu-item-3">
             <span class="title-label-4"><strong>栏目三</strong></span>
             <el-icon class="title-icon-4"><Coin /></el-icon>
           </el-menu-item>
-          <el-menu-item index="4" class="menu-item-4">
+          <el-menu-item index="5" class="menu-item-4">
             <span class="title-label-5"><strong>栏目四</strong></span>
             <el-icon class="title-icon-5"><Calendar /></el-icon>
           </el-menu-item>
-          <el-menu-item index="5" class="menu-item-5">
+          <el-menu-item index="6" class="menu-item-5">
             <span class="title-label-6"><strong>栏目五</strong></span>
             <el-icon class="title-icon-6"><Money /></el-icon>
           </el-menu-item>
@@ -159,8 +159,9 @@
           </el-row>
         </el-aside>
         <el-main>
-          <ERP_Page v-if="ERP_button.button_click" />
-          <h2 v-if="MES_button.button_click">efgh</h2>
+          <MainPage v-if="MeunSelect == '1'" />
+          <ERP_Page v-if="MeunSelect == '7'" />
+          <h2 v-if="MeunSelect == '8'">efgh</h2>
         </el-main>
       </el-container>
     </el-container>
@@ -185,16 +186,17 @@ import {
   Calendar,
   Money,
 } from "@element-plus/icons-vue";
-import { ref , reactive, provide  } from "vue";
+import { ref , provide  } from "vue";
 import { useDark, useToggle } from "@vueuse/core";
 import Account_Form from "../../components/Account_Form.vue";
 import { useRoute } from "vue-router";
 import TitleMeun from "../../components/TitleMeun.vue";
 import ERP_Page from "../Main_ButtonPage/ERP_Page.vue";
+import MainPage from '../TitlePage/MainPage.vue';
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
-const activeIndex = ref("1");
+const activeIndex = ref('1');
 
 
 
@@ -227,6 +229,7 @@ export default {
     Account_Form,
     TitleMeun,
     ERP_Page,
+    MainPage,
   },
   directives: {
     focus: {
@@ -240,7 +243,12 @@ export default {
     //Meun选择事件  Meun選択イベント
     function handleSelect(index) {
       activeIndex.value = index;
+      MeunSelect.value = index;
     }
+    // //Meun初始化选择  Meun初期化選択
+    // const dialogclose = () => {
+    //   activeIndex.value = "1";
+    // };
     //创建路由实例   ルーティングインスタンスの作成
     const route = useRoute();
     console.log(route);
@@ -271,10 +279,10 @@ export default {
       MeunTouch.value = !MeunTouch.value
     }
     //Meun各Page判断变量定义  Meun各Page判定変数定義
-    const ERP_button = reactive({button_click: false})
-    provide('ERP_button',ERP_button)
-    const MES_button = reactive({button_click: false})
-    provide('MES_button',MES_button)
+    const MeunSelect = ref('1');
+    // const ERP_button = reactive({button_click: false})
+    provide('MeunSelect',MeunSelect)
+    // const MES_button = reactive({button_click: false})
 
     return {
       handleSelect,
@@ -286,8 +294,7 @@ export default {
       MeunButton_isTouched,
       MeunsTouch,
       MeunTouchLeave,
-      ERP_button,
-      MES_button,
+      MeunSelect,
     };
   },
 };
