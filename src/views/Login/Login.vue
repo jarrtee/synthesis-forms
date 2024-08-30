@@ -31,6 +31,7 @@
           placeholder="Usernasme"
           v-on:keyup.enter="enterLogin"
           prefix-icon = "UserFilled"
+          
         />
       </div>
       <div class="input-2">
@@ -75,7 +76,7 @@
           style="width: 180px"
           class="login"
           @click="enterLogin"
-          >Login in</el-button
+          >{{LoginIn}}</el-button
         >
       </div>
     </div>
@@ -110,7 +111,8 @@ export default {
       Username: "",
       password: "",
     });
-
+    const LoginIn = ref("Login In")
+    
 
     const enterLogin = () => {
       if (Account_inf.Username == "admin" && Account_inf.password == "123") {
@@ -168,6 +170,7 @@ export default {
       checked,
       enterLogin,
       Login_title,
+      LoginIn,
     };
   },
 };
