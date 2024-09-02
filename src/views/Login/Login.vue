@@ -30,8 +30,7 @@
           style="width: 240px"
           placeholder="Usernasme"
           v-on:keyup.enter="enterLogin"
-          prefix-icon = "UserFilled"
-          
+          prefix-icon="UserFilled"
         />
       </div>
       <div class="input-2">
@@ -51,7 +50,7 @@
           v-on:keyup.enter="enterLogin"
           type="password"
           :show-password="true"
-          prefix-icon = "Lock"
+          prefix-icon="Lock"
         />
       </div>
       <div class="button-forget">
@@ -76,17 +75,26 @@
           style="width: 180px"
           class="login"
           @click="enterLogin"
-          >{{LoginIn}}</el-button
+          >{{ LoginIn }}</el-button
         >
       </div>
     </div>
   </div>
 </template>
 <script>
-import { Edit, Check, Message, View, Hide, UserFilled, Lock } from "@element-plus/icons-vue";
+import {
+  Edit,
+  Check,
+  Message,
+  View,
+  Hide,
+  UserFilled,
+  Lock,
+} from "@element-plus/icons-vue";
 import { ElMessage } from "element-plus";
-import { ref, reactive, inject } from "vue";
+import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
+import axios from 'axios'
 // import $ from 'jquery'
 
 export default {
@@ -101,7 +109,7 @@ export default {
     View,
     Hide,
     UserFilled,
-    Lock
+    Lock,
   },
   setup() {
     //变量定义   変数定義
@@ -111,42 +119,42 @@ export default {
       Username: "",
       password: "",
     });
-    const LoginIn = ref("Login In")
-    
+    const LoginIn = ref("Login In");
 
-    const enterLogin = () => {
-      if (Account_inf.Username == "admin" && Account_inf.password == "123") {
+    const enterLogin = async () => {
+      // if (Account_inf.Username == "admin" && Account_inf.password == "123") {
+      //   router.push("/HomePage");
+      //   ElMessage("登陆成功!");
+      // }
+      // else if (
+      //   Object.keys(Account_inf.Username).length == 0 ||
+      //   Object.keys(Account_inf.password).length == 0
+      // ) {
+      //   ElMessage("请输入用户名/密码");//Object.keys().length 判断对象是否为空   $.isEmptyObject() 判断是否存在对象
+      // } else {
+      //   ElMessage("用户名/密码错误");
+      // }
+
+      const res = await axios.get(
+        "http://127.0.0.1:8000/dj_api/login/?Username=" +
+          Account_inf.Username +
+          "&password=" +
+          Account_inf.password
+      );
+      let flag = res.data.msg;
+      if (flag == "OK") {
+        ElMessage({
+          message: "login success",
+          type: "success",
+        });
         router.push("/HomePage");
-        ElMessage("登陆成功!");
-      }
-      else if (
-        Object.keys(Account_inf.Username).length == 0 ||
-        Object.keys(Account_inf.password).length == 0
-      ) {
-        ElMessage("请输入用户名/密码");//Object.keys().length 判断对象是否为空   $.isEmptyObject() 判断是否存在对象
       } else {
-        ElMessage("用户名/密码错误");
+        ElMessage({
+          message: "login fail, please try again",
+          type: "warning",
+        });
       }
-      // if(!formEl)return;
-      // formEl.validate((valid)=>{
-      //   if(valid){
-      //     loginAPI(ruleForm).then((res)=>{
-      //       if(res.code === 200){
-      //         //登录成功
-      //         //1、存code
-      //         localStorage.setItem("token",res.date.tokenHead+res.date.token);
-      //         //跳转
-      //         router.push('/')
-      //         ElMessage.success("登录成功");
-      //       }
-      //     });
-      //   }else{
-      //     //提示用户
-      //     ElMessage.error("0.0")
-      //     //记得如果是校验失败,要返回false
-      //     return false;
-      //   }
-      // })
+      console.log("res message is ", res.data);
     };
 
     const validatePass = (value, callback) => {

@@ -11,7 +11,8 @@ import 'ant-design-vue/dist/reset.css'
 //引入暗黑模式
 import 'element-plus/theme-chalk/dark/css-vars.css'
 //条码
-import VueBarcode from 'vue3-barcode'
+import VueBarcode from 'vue3-barcode';
+import axios from 'axios'
 
 
 
@@ -19,7 +20,7 @@ import VueBarcode from 'vue3-barcode'
 // createApp(Main).use(store).use(router).use(ElementPlus).use(Antd).use(VueBarcode).mount('#main')
 
 const app = createApp(Main)
-app.use(store).use(router).use(ElementPlus).use(Antd).use(VueBarcode).mount('#main')
+app.use(store).use(router).use(ElementPlus).use(Antd).use(VueBarcode).use(axios).mount('#main')
 
 
 Object.keys(Icons).forEach(key => {  
