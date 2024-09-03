@@ -97,6 +97,9 @@ import { useRouter } from "vue-router";
 import axios from 'axios'
 // import $ from 'jquery'
 
+import { getLoginApi } from "@/Api";
+
+
 export default {
   date() {
     return {};
@@ -120,27 +123,12 @@ export default {
       password: "",
     });
     const LoginIn = ref("Login In");
+    const router = useRouter();
 
+    //登录事件  ログインイベント
     const enterLogin = async () => {
-      // if (Account_inf.Username == "admin" && Account_inf.password == "123") {
-      //   router.push("/HomePage");
-      //   ElMessage("登陆成功!");
-      // }
-      // else if (
-      //   Object.keys(Account_inf.Username).length == 0 ||
-      //   Object.keys(Account_inf.password).length == 0
-      // ) {
-      //   ElMessage("请输入用户名/密码");//Object.keys().length 判断对象是否为空   $.isEmptyObject() 判断是否存在对象
-      // } else {
-      //   ElMessage("用户名/密码错误");
-      // }
-
-      const res = await axios.get(
-        "http://127.0.0.1:8000/dj_api/login/?Username=" +
-          Account_inf.Username +
-          "&password=" +
-          Account_inf.password
-      );
+      try{
+      const res = await getLoginApi({Username:Account_inf.Username,password:Account_inf.password})
       let flag = res.data.msg;
       if (flag == "OK") {
         ElMessage({
@@ -155,23 +143,10 @@ export default {
         });
       }
       console.log("res message is ", res.data);
-    };
-
-    const validatePass = (value, callback) => {
-      if (value === "") {
-        //若不能通过校验,规定使用calback,传入一个ERROR对象,把信息传入error对象
-        callback(new Error("请输入密码"));
-      } else {
-        //校验成功,直接调用callback
-        callback();
+      }catch(error){
+        console.error(error);
       }
     };
-    const rules = reactive({
-      username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
-      password: [{ validator: validatePass, trigger: "blur" }],
-    });
-
-    const router = useRouter();
 
     return {
       Account_inf,
