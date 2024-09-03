@@ -7,3 +7,9 @@ export const getLogin = params=>request({
     params
 })
 
+export const BasicInf =()=>request({
+    method:'GET',
+    url:'/dj_api/basic',
+    responseType:'用户名'
+})
+

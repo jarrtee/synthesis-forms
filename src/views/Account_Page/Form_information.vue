@@ -44,8 +44,13 @@
         style="display: none"
         ref="FileInput"
       /><!--文件类型用于上传图片-->
-      <input type="text" class="User_input" :disabled = InputVerify />
-      <input type="text" class="User_input1" :disabled = InputVerify />
+      <input
+        type="text"
+        class="User_input"
+        :disabled="InputVerify"
+        :value="user_name"
+      />
+      <input type="text" class="User_input1" :disabled="InputVerify" />
     </div>
     <div class="right">
       <el-button
@@ -67,8 +72,8 @@
 </template>
 
 <script>
-import { reactive } from "vue";
-import { ref } from "vue";
+import { ref, reactive } from "vue";
+import { BasicInfApi } from "@/Api";
 
 export default {
   date() {
@@ -81,7 +86,9 @@ export default {
     });
     const User_Picture = ref(require("@/assets/picture1.jpg"));
     const FileInput = ref(null);
-    const InputVerify = ref(true)
+    const InputVerify = ref(true);
+
+    const user_name =async()=>{ await BasicInfApi() }
 
     //Picture更改事件  Picture変更イベント
     const Picture_Exchange = () => {
@@ -100,9 +107,10 @@ export default {
       reader.readAsDataURL(file);
     };
     //编辑按钮定义
-    const infEdit=()=>{
-      InputVerify.value = !InputVerify.value
-    }
+    const infEdit = () => {
+      InputVerify.value = !InputVerify.value;
+
+    };
 
     return {
       form,
@@ -112,6 +120,7 @@ export default {
       FileInput,
       InputVerify,
       infEdit,
+      user_name,
     };
   },
 };
