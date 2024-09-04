@@ -48,7 +48,6 @@
         type="text"
         class="User_input"
         :disabled="InputVerify"
-        :value="user_name"
       />
       <input type="text" class="User_input1" :disabled="InputVerify" />
     </div>
@@ -72,8 +71,9 @@
 </template>
 
 <script>
-import { ref, reactive } from "vue";
-import { BasicInfApi } from "@/Api";
+import { ref, reactive,onMounted, toRef } from "vue";
+// import { BasicInfApi } from "@/Api";
+import axios from "axios";
 
 export default {
   date() {
@@ -81,14 +81,25 @@ export default {
   },
   setup() {
     //变量定义  変数定義
-    const form = reactive({
-      name: "",
+    const state = reactive({
+      lists:[],
     });
     const User_Picture = ref(require("@/assets/picture1.jpg"));
     const FileInput = ref(null);
     const InputVerify = ref(true);
 
-    const user_name =async()=>{ await BasicInfApi() }
+    let base_url = "http://127.0.0.1:8000/api/dj_api/";
+    const getlyb = ()=>{
+      axios.get(base_url).then(res=>{
+        state.lists = res.data;
+      }).catch(err=>{
+        console.log(err)
+      })
+    }
+    onMounted(()=>{
+      getlyb();
+    })
+
 
     //Picture更改事件  Picture変更イベント
     const Picture_Exchange = () => {
@@ -109,18 +120,17 @@ export default {
     //编辑按钮定义
     const infEdit = () => {
       InputVerify.value = !InputVerify.value;
-
     };
 
     return {
-      form,
+      state,
       User_Picture,
       Picture_Exchange,
       handleImageChange,
       FileInput,
       InputVerify,
       infEdit,
-      user_name,
+      ...toRef(state)
     };
   },
 };
